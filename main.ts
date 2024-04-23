@@ -17,5 +17,5 @@ if (parsed.values.help) {
   Deno.exit(0);
 }
 
-const coreFile = checkCoreFile()
+const coreFile: string = await checkCoreFile()
 console.log(coreFile)
