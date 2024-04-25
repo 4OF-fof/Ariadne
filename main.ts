@@ -1,21 +1,22 @@
 import { $ } from "jsr:@david/dax@0.40.0";
 import { parseArgs } from "node:util";
-import { checkCoreFile } from "./checkCoreFile.ts";
 
 const parsed = parseArgs({
-  allowPositionals: true,
   options: {
     help: {
       type: "boolean",
+      default: false,
       short: 'h'
     }
-  }
+  },
+  allowPositionals: true
 });
 
 if (parsed.values.help) {
-  console.log("Help message");
+  console.log("Help text");
   Deno.exit(0);
 }
 
-const coreFile: string = await checkCoreFile()
-console.log(coreFile)
+
+const hoge: string = parsed.positionals.length === 0 ? "HogeFuga" : parsed.positionals[0];
+await $`echo ${hoge}`
